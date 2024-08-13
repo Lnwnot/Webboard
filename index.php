@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,13 +20,27 @@
                 <option value="STU">เรื่องเรียน</option>
                 </select>
             </form>
-            <a href="login.php" style="float: right;">เข้าสู่ระบบ</a>
-            <u style="list-style: disc;"">
+            <?php
+                if(!isset($_SESSION['id'])){
+                    echo "<a href='login.php' style='float: right;'>เข้าสู่ระบบ</a>";}
+                else{
+                    echo "<span style='float: right;'>ผู้ใช้งานระบบ : $_SESSION[username] <a href='logout.php'> ออกจากระบบ</a></span>";
+                    echo "<a href ='newpost.php'>สร้างกระทู้ใหม่</a>";}
+            ?>
+            <u style="list-style: disc;">
                 <?php 
                 $a = 1;
-                while($a < 11){
-                    echo "<li><a href='post.php?id=$a'>กระทู้ที่ $a</a></li>";
-                    $a++;
+                if($_SESSION['id']=='admin'){
+                    while($a < 11){
+                        echo "<li><a href='post.php?id=$a'>กระทู้ที่ $a</a></li>";
+                        $a++;
+                    }
+                }
+                else{
+                    while($a < 11){
+                        echo "<li><a href='post.php?id=$a'>กระทู้ที่ $a </a><a href='delete.exe'>ลบ</a></li>";
+                        $a++;
+                    }
                 }
                 ?>
                 

@@ -17,10 +17,16 @@
             $username = $_POST["username"];
             $password = $_POST["password"];
             if($username == "admin" && $password == "ad1234"){
+                $_SESSION["username"]="admin";
+                $_SESSION["role"]="a";
+                $_SESSION["id"]=session_id();
                 echo "ยินดีต้อนรับคุณ ADMIN";
             }
             else if($username == "member" && $password == "mem1234"){
-                echo "ยินดีต้อนรับตุณ MEMBER";
+                $_SESSION["username"]="member";
+                $_SESSION["role"]="m";
+                $_SESSION["id"]=session_id();
+                echo "ยินดีต้อนรับคุณ MEMBER";
             }
             else
                 echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
