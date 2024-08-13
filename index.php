@@ -28,21 +28,17 @@ session_start();
                     echo "<a href ='newpost.php'>สร้างกระทู้ใหม่</a>";}
             ?>
             <u style="list-style: disc;">
-                <?php 
+            <?php 
                 $a = 1;
-                if($_SESSION['id']=='admin'){
-                    while($a < 11){
-                        echo "<li><a href='post.php?id=$a'>กระทู้ที่ $a</a></li>";
-                        $a++;
+                while($a < 11){
+                    echo "<li><a href='post.php?id=$a'>กระทู้ที่ $a </a>";
+                    if(isset($_SESSION['id'])&&$_SESSION['role']=='a'){
+                        echo "<a href ='delete.php?id=$a'>ลบ</a>";
                     }
+                    echo "</li>";
+                    $a++;
                 }
-                else{
-                    while($a < 11){
-                        echo "<li><a href='post.php?id=$a'>กระทู้ที่ $a </a><a href='delete.exe'>ลบ</a></li>";
-                        $a++;
-                    }
-                }
-                ?>
+            ?>
                 
             </u>
     </body>
