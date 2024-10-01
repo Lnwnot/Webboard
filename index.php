@@ -1,6 +1,3 @@
-<a?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,44 +10,44 @@ session_start();
 </head>
 <body>
     <div class="container-lg">
-    <h1 style="text-align: center;" class="mt-3">Webboard KakKak</h1>
-    <?php include"nav.php"?>
-    <div class="mt-3">
-        <label>หมวดหมู่</label>
+        <h1 class="text-center mt-3">Webboard KakKak</h1>
+        <?php include "nav.php"; ?>
+        <div class="mt-3">
+            <label>หมวดหมู่</label>
             <span class="dropdown">
-                <button class="btn btn-light dropdown-toggle" btn-sm type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     --ทั้งหมด--
                 </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">ทั้งหมด</a></li>
-                <li><a class="dropdown-item" href="#">เรื่องทั่วไป</a></li>
-                <li><a class="dropdown-item" href="#">เรื่องเรียน</a></li>
-            </ul>
-        </span> 
-        <?php
-        if (!isset($_SESSION["id"])){
-            echo"<a href='newpost.php' class='btn btn-success btn-sm' 
-               style='float: right'>สร้างกระทู้ใหม่</a>";
-        echo"<i class='bi bi-plus-lg'></i></a>"; 
-
-        }
-        ?> 
-    </div>
-
-    <table class = "table table-striped">
-        <?php 
-            for ($i = 1; $i <= 10 ;$i++ ){
-                    echo "<tr><td><a href='post.php?id=$i'>กระทู้ที่ $i</a>";
-                if (isset($_SESSION['id']) && $_SESSION['role']=='a'){
-                    echo "&nbsp&nbsp;<a href='delete.php?id=$i' 
-                    class = 'btn btn-danger-btn-sm me-3' style='float-right'>
-                    <i class='bi bi-trash'></i></a>";}
-                    echo "</tr></td>";
-                }     
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">ทั้งหมด</a></li>
+                    <li><a class="dropdown-item" href="#">เรื่องทั่วไป</a></li>
+                    <li><a class="dropdown-item" href="#">เรื่องเรียน</a></li>
+                </ul>
+            </span>
+            <?php
+            if (!isset($_SESSION["id"])) {
+                echo "<a href='newpost.php' class='btn btn-success btn-sm float-end'>สร้างกระทู้ใหม่</a>";
+            }
             ?>
-    </table>
-    
-    </div>
+        </div>
 
+        <table class="table table-striped mt-3">
+            <?php 
+            for ($i = 1; $i <= 10; $i++) {
+                echo "<tr><td><a href='post.php?id=$i'>กระทู้ที่ $i</a></td>";
+                if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
+                    echo "<td class='text-end'>
+                            <a href='delete.php?id=$i' class='btn btn-danger btn-sm'>
+                                <i class='bi bi-trash'></i>
+                            </a>
+                          </td>";
+                } else {
+                    echo "<td></td>"; // Empty cell if not admin
+                }
+                echo "</tr>";
+            }     
+            ?>
+        </table>
+    </div>
 </body>
 </html>
