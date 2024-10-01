@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($_SESSION['id'])) {
     header('location:index.php');
     exit();
@@ -21,8 +20,9 @@ if (isset($_SESSION['id'])) {
     </style>
 </head>
 <body>
+    <div class="container-lg">
     <h1 class="text-center">Webboard KakKak</h1>
-    <hr>
+    <?php include "nav.php"; ?>
     <div class="container-lg">
         <?php
         if (isset($_SESSION['error'])) {
@@ -52,6 +52,7 @@ if (isset($_SESSION['id'])) {
     </div>
     <div class="text-center mt-3">
         ถ้ายังไม่ได้สมัครสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a>
+    </div>
     </div>
 </body>
 </html>
