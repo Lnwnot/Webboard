@@ -31,7 +31,7 @@ if (isset($_SESSION['id'])) {
         }
         ?>
     </div>
-    <div class="card login-card mt-4">
+    <div class="card mt-4">
         <h5 class="card-header">เข้าสู่ระบบ</h5>
         <div class="card-body">
             <form action="verify.php" method="post">
