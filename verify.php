@@ -25,16 +25,22 @@ if(isset($_SESSION['id'])){
                 $_SESSION["username"]="admin";
                 $_SESSION["role"]="a";
                 $_SESSION["id"]=session_id();
-                echo "ยินดีต้อนรับคุณ ADMIN";
+                header("location:index.php");
+                die();
             }
             else if($username == "member" && $password == "mem1234"){
                 $_SESSION["username"]="member";
                 $_SESSION["role"]="m";
                 $_SESSION["id"]=session_id();
-                echo "ยินดีต้อนรับคุณ MEMBER";
+                header("location:index.php");
+                die();
             }
-            else
-                echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
+            else{
+                $_SESSION["error"] = "error";
+                header("location:login.php");
+                die();
+            }
+
             ?>
             <BR>
             <a href="index.php">กลับไปยังหน้าหลัก</a>
