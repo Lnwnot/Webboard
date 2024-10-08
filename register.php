@@ -1,5 +1,7 @@
 <?php
-session_start();
+    session_start();
+?>
+<?php
 if (isset($_SESSION['id'])) {
     header('Location: index.php');
     exit();
@@ -22,6 +24,21 @@ if (isset($_SESSION['id'])) {
     </style>
 </head>
 <body>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <?php
+                if (isset($_SESSION['add_login'])) {
+                    if ($_SESSION['add_login'] == "error") {
+                        echo "<div class='alert alert-danger'>ชื่อบัญชีซ้ำหรือฐานข้อมูลมีปัญหา</div>";
+                    } else {
+                        echo "<div class='alert alert-success'>เพิ่มบัญชีเรียบร้อยแล้ว</div>";
+                    }
+                    unset($_SESSION['add_login']);
+                }
+            ?>
+        </div>
+    </div>
     <div class="container-lg">
         <h1 class="text-center">สมัครสมาชิก</h1>
         <div class="card medium-card mt-4">
@@ -77,7 +94,7 @@ if (isset($_SESSION['id'])) {
                 </form>
             </div>
         </div>
-        <center><a href="index.html">กลับไปหน้าหลัก</a></center>
+        <center><a href="index.php">กลับไปหน้าหลัก</a></center>
     </div>
 </body>
 </html>
