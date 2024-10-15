@@ -1,6 +1,6 @@
 <?php
 session_start();
-$cat = $_POST['catagory'];
+$cat = $_POST['category'];
 $title = $_POST['topic'];
 $content = $_POST['comment'];
 $id = $_SESSION['user_id'];

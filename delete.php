@@ -1,13 +1,16 @@
 <?php
-session_start()
-?>
-<?php
-if(!isset($_SESSION['id'])||$_SESSION['role']!='a'){
-    header('location:index.php');
+session_start();
+if (isset($_SESSION['id']) && $_SESSION['role']=='a'){
+    $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+    $sql="DELETE FROM post WHERE id=$_GET[id]";
+    $conn->exec($sql);
+    $sql="DELETE FROM comment WHERE post_id=$_GET[id]";
+    $conn->exec($sql);
+    $conn=null;
+    header("location:index.php");
     die();
-}
-else{
-    $k = $_GET['id'];
-    echo "ลบกระทู้หมายเลข $k";
+}else{
+    header("location:index.php");
+    die();
 }
 ?>

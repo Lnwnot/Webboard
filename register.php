@@ -1,7 +1,5 @@
 <?php
-    session_start();
-?>
-<?php
+session_start();
 if (isset($_SESSION['id'])) {
     header('Location: index.php');
     exit();
@@ -22,20 +20,34 @@ if (isset($_SESSION['id'])) {
             margin: auto;
         }
     </style>
+    <script>
+        function PassAgain() {
+            var x = document.getElementById("password");
+            var y = document.getElementById("Spassword");
+            if (x.value === y.value) {
+                return true;
+            } else {
+                alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
+                x.value = "";
+                y.value = "";
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
             <?php
-                if (isset($_SESSION['add_login'])) {
-                    if ($_SESSION['add_login'] == "error") {
-                        echo "<div class='alert alert-danger'>ชื่อบัญชีซ้ำหรือฐานข้อมูลมีปัญหา</div>";
-                    } else {
-                        echo "<div class='alert alert-success'>เพิ่มบัญชีเรียบร้อยแล้ว</div>";
-                    }
-                    unset($_SESSION['add_login']);
+            if (isset($_SESSION['add_login'])) {
+                if ($_SESSION['add_login'] == "error") {
+                    echo "<div class='alert alert-danger'>ชื่อบัญชีซ้ำหรือฐานข้อมูลมีปัญหา</div>";
+                } else {
+                    echo "<div class='alert alert-success'>เพิ่มบัญชีเรียบร้อยแล้ว</div>";
                 }
+                unset($_SESSION['add_login']);
+            }
             ?>
         </div>
     </div>
@@ -44,7 +56,7 @@ if (isset($_SESSION['id'])) {
         <div class="card medium-card mt-4">
             <div class="card-header bg-primary text-white">กรอกข้อมูล</div>
             <div class="card-body">
-                <form action="register_save.php" method="post">
+                <form action="register_save.php" method="post" >
                     <div class="mb-3 row">
                         <label for="login" class="col-lg-3 col-form-label">ชื่อบัญชี</label>
                         <div class="col-lg-9">
@@ -55,6 +67,12 @@ if (isset($_SESSION['id'])) {
                         <label for="password" class="col-lg-3 col-form-label">รหัสผ่าน</label>
                         <div class="col-lg-9">
                             <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="Spassword" class="col-lg-3 col-form-label">ใส่รหัสผ่านซ้ำ</label>
+                        <div class="col-lg-9">
+                            <input type="password" id="Spassword" name="Spassword" class="form-control" required onblur="return PassAgain();">
                         </div>
                     </div>
                     <div class="mb-3 row">
