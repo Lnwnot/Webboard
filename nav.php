@@ -15,6 +15,10 @@
                             aria-expanded='false'>";
                     echo "<i class='bi bi-person-lines-fill'></i>$_SESSION[username]</a>";
                     echo "<ul class='dropdown-menu'>";
+                    if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
+                        echo "<li><a class='dropdown-item' href='category.php'><i class='bi bi-bookmarks'></i> จัดการหมวดหมู่</a></li>";
+                        echo "<li><a class='dropdown-item' href='user.php'><i class='bi bi-person-check'></i></i> จัดการผู้ใช้งาน</a></li>";
+                    }
                     echo "<li><a class='dropdown-item' href='logout.php'><i class='bi bi-power'></i> ออกจากระบบ</a></li>";
                     echo "</ul>";
                     echo "</li>";

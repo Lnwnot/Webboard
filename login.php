@@ -68,6 +68,7 @@ if (isset($_SESSION['id'])) {
                     </div>
                 </div>
                 <div>
+                    <input type="hidden" id="id" name="id">
                     <button type="submit" class="btn btn-success btn-sm me-2">Login</button>
                     <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                 </div>
